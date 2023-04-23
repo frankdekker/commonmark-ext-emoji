@@ -47,7 +47,7 @@ class EmojiDataProvider implements EmojiDataProviderInterface
             $shortcuts[] = preg_quote((string)$key, '/');
         }
 
-        return $this->supportedEmojis = implode('|', $shortcuts) . '|\\(([\w-]+)\\)';
+        return $this->supportedEmojis = implode('|', $shortcuts) . '|\\(([\w-]+)\\)|:([\w-]+):';
     }
 
     public function convert(string $key): ?string
@@ -59,7 +59,9 @@ class EmojiDataProvider implements EmojiDataProviderInterface
         $key = $this->shortcuts[$key] ?? $key;
 
         // remove any leading and trailing ()
-        $key = trim($key, '()');
+        if ((str_starts_with($key, '(') && str_ends_with($key, ')')) || (str_starts_with($key, ':') && str_ends_with($key, ':'))) {
+            $key = substr($key, 1, -1);
+        }
 
         // convert key to emoji
         return $this->emojis[$key] ?? null;

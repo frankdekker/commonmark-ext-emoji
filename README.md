@@ -23,11 +23,11 @@ $environment->addExtension(new GithubFlavoredMarkdownExtension());
 $environment->addExtension(new EmojiExtension());
 
 $converter = new MarkdownConverter($environment);
-echo $converter->convert('Works (y)');
+echo $converter->convert('Works (y) :thumbsup: (thumbsup)');
 ```
 Outputs:
 ```text
-Works 👍
+Works 👍 👍 👍
 ```
 
 Read more about adding an extension: https://commonmark.thephpleague.com/2.4/extensions/github-flavored-markdown/
