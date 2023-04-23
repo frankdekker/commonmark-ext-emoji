@@ -4,10 +4,7 @@
     <arg name="report" value="full"/>
     <arg value="sp"/>
     <rule ref="PSR2"/>
-    <rule ref="PSR12">
-        <exclude name="PSR12.Files.FileHeader" />
-        <exclude name="PSR12.ControlStructures.ControlStructureSpacing.FirstExpressionLine" />
-    </rule>
+    <rule ref="PSR12"/>
     <rule ref="Generic.PHP.RequireStrictTypes"/>
     <rule ref="Generic.Files.LineLength">
         <properties>

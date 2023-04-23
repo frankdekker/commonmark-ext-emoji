@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace FD\CommonMarkEmoji;
@@ -16,6 +17,16 @@ class EmojiDataProvider implements EmojiDataProviderInterface
 
     private function __construct(private readonly string $emojiPath, private readonly string $shortcutsPath)
     {
+    }
+
+    public static function full(): EmojiDataProvider
+    {
+        return new EmojiDataProvider(__DIR__ . '/../resources/full.php', __DIR__ . '/../resources/shortcuts.php');
+    }
+
+    public static function light(): EmojiDataProvider
+    {
+        return new EmojiDataProvider(__DIR__ . '/../resources/light.php', __DIR__ . '/../resources/shortcuts.php');
     }
 
     public function getSupportedEmojis(): array
@@ -46,15 +57,5 @@ class EmojiDataProvider implements EmojiDataProviderInterface
 
         // convert key to emoji
         return $this->emojis[$key] ?? null;
-    }
-
-    public static function full(): EmojiDataProvider
-    {
-        return new EmojiDataProvider(__DIR__ . '/../resources/full.php', __DIR__ . '/../resources/shortcuts.php');
-    }
-
-    public static function light(): EmojiDataProvider
-    {
-        return new EmojiDataProvider(__DIR__ . '/../resources/light.php', __DIR__ . '/../resources/shortcuts.php');
     }
 }
