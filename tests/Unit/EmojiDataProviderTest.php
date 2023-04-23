@@ -21,6 +21,7 @@ class EmojiDataProviderTest extends TestCase
     {
         $dataProvider = EmojiDataProvider::full();
         static::assertCount(1911, $dataProvider->getSupportedEmojis());
+        static::assertCount(1911, $dataProvider->getSupportedEmojis());
     }
 
     public function testConvert(): void
