@@ -5,9 +5,12 @@
          requireCoverageMetadata="true"
          failOnRisky="true"
          failOnWarning="true"
+         failOnNotice="true"
+         failOnSkipped="true"
+         failOnIncomplete="true"
+         failOnEmptyTestSuite="true"
          beStrictAboutChangesToGlobalState="true"
          beStrictAboutOutputDuringTests="true"
-         beStrictAboutCoverageMetadata="true"
          beStrictAboutTodoAnnotatedTests="true"
          executionOrder="defects"
 >
