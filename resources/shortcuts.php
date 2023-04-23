@@ -2,148 +2,79 @@
 declare(strict_types=1);
 
 return [
-    'angry'            =>
-        [
-            '>:(',
-            '>:-(',
-        ],
-    'blush'            =>
-        [
-            ':")',
-            ':-")',
-        ],
-    'broken_heart'     =>
-        [
-            '</3',
-            '<\\3',
-        ],
-    'confused'         =>
-        [
-            ':/',
-            ':-/',
-        ],
-    'cry'              =>
-        [
-            ':\'(',
-            ':\'-(',
-            ':,(',
-            ':,-(',
-        ],
-    'frowning'         =>
-        [
-            ':(',
-            ':-(',
-        ],
-    'heart'            =>
-        [
-            '<3',
-        ],
-    'imp'              =>
-        [
-            ']:(',
-            ']:-(',
-        ],
-    'innocent'         =>
-        [
-            'o:)',
-            'O:)',
-            'o:-)',
-            'O:-)',
-            '0:)',
-            '0:-)',
-        ],
-    'joy'              =>
-        [
-            ':\')',
-            ':\'-)',
-            ':,)',
-            ':,-)',
-            ':\'D',
-            ':\'-D',
-            ':,D',
-            ':,-D',
-        ],
-    'kissing'          =>
-        [
-            ':*',
-            ':-*',
-        ],
-    'laughing'         =>
-        [
-            'x-)',
-            'X-)',
-        ],
-    'neutral_face'     =>
-        [
-            ':|',
-            ':-|',
-        ],
-    'open_mouth'       =>
-        [
-            ':o',
-            ':-o',
-            ':O',
-            ':-O',
-        ],
-    'rage'             =>
-        [
-            ':@',
-            ':-@',
-        ],
-    'smile'            =>
-        [
-            ':D',
-            ':-D',
-        ],
-    'smiley'           =>
-        [
-            ':)',
-            ':-)',
-        ],
-    'smiling_imp'      =>
-        [
-            ']:)',
-            ']:-)',
-        ],
-    'sob'              =>
-        [
-            ':,\'(',
-            ':,\'-(',
-            ';(',
-            ';-(',
-        ],
-    'stuck_out_tongue' =>
-        [
-            ':P',
-            ':-P',
-        ],
-    'sunglasses'       =>
-        [
-            '8-)',
-            'B-)',
-        ],
-    'sweat'            =>
-        [
-            ',:(',
-            ',:-(',
-        ],
-    'sweat_smile'      =>
-        [
-            ',:)',
-            ',:-)',
-        ],
-    'unamused'         =>
-        [
-            ':s',
-            ':-S',
-            ':z',
-            ':-Z',
-            ':$',
-            ':-$',
-        ],
-    'wink'             =>
-        [
-            ';)',
-            ';-)',
-        ],
+    '>:('    => 'angry',
+    '>:-('   => 'angry',
+    ':")'    => 'blush',
+    ':-")'   => 'blush',
+    '</3'    => 'broken_heart',
+    '<\\3'   => 'broken_heart',
+    ':/'     => 'confused',
+    ':-/'    => 'confused',
+    ':\'('   => 'cry',
+    ':\'-('  => 'cry',
+    ':,('    => 'cry',
+    ':,-('   => 'cry',
+    ':('     => 'frowning',
+    ':-('    => 'frowning',
+    '<3'     => 'heart',
+    ']:('    => 'imp',
+    ']:-('   => 'imp',
+    'o:)'    => 'innocent',
+    'O:)'    => 'innocent',
+    'o:-)'   => 'innocent',
+    'O:-)'   => 'innocent',
+    '0:)'    => 'innocent',
+    '0:-)'   => 'innocent',
+    ':\')'   => 'joy',
+    ':\'-)'  => 'joy',
+    ':,)'    => 'joy',
+    ':,-)'   => 'joy',
+    ':\'D'   => 'joy',
+    ':\'-D'  => 'joy',
+    ':,D'    => 'joy',
+    ':,-D'   => 'joy',
+    ':*'     => 'kissing',
+    ':-*'    => 'kissing',
+    'x-)'    => 'laughing',
+    'X-)'    => 'laughing',
+    ':|'     => 'neutral_face',
+    ':-|'    => 'neutral_face',
+    ':o'     => 'open_mouth',
+    ':-o'    => 'open_mouth',
+    ':O'     => 'open_mouth',
+    ':-O'    => 'open_mouth',
+    ':@'     => 'rage',
+    ':-@'    => 'rage',
+    ':D'     => 'smile',
+    ':-D'    => 'smile',
+    ':)'     => 'smiley',
+    ':-)'    => 'smiley',
+    ']:)'    => 'smiling_imp',
+    ']:-)'   => 'smiling_imp',
+    ':,\'('  => 'sob',
+    ':,\'-(' => 'sob',
+    ';('     => 'sob',
+    ';-('    => 'sob',
+    ':P'     => 'stuck_out_tongue',
+    ':-P'    => 'stuck_out_tongue',
+    '8-)'    => 'sunglasses',
+    'B-)'    => 'sunglasses',
+    ',:('    => 'sweat',
+    ',:-('   => 'sweat',
+    ',:)'    => 'sweat_smile',
+    ',:-)'   => 'sweat_smile',
+    ':s'     => 'unamused',
+    ':-S'    => 'unamused',
+    ':z'     => 'unamused',
+    ':-Z'    => 'unamused',
+    ':$'     => 'unamused',
+    ':-$'    => 'unamused',
+    ';)'     => 'wink',
+    ';-)'    => 'wink',
+    '+1'     => 'thumbsup',
+    '(y)'    => 'thumbsup',
+    '(yes)'  => 'thumbsup',
+    '-1'     => 'thumbsdown',
+    '(n)'    => 'thumbsdown',
+    '(no)'   => 'thumbsdown',
 ];

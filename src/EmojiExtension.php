@@ -8,19 +8,16 @@ use League\CommonMark\Extension\ExtensionInterface;
 
 class EmojiExtension implements ExtensionInterface
 {
-    public const MODE_LIGHT = 'light';
-    public const MODE_FULL  = 'full';
+    private EmojiDataProviderInterface $emojiDataProvider;
 
-    /**
-     * @param self::MODE_* $mode either light or full mode for supported emoticons. See /resources/ for the list of support emoticons.
-     */
-    public function __construct(private readonly string $mode = self::MODE_LIGHT)
+    public function __construct(?EmojiDataProviderInterface $emojiDataProvider = null)
     {
+        $this->emojiDataProvider = $emojiDataProvider ?? EmojiDataProvider::light();
     }
 
     public function register(EnvironmentBuilderInterface $environment): void
     {
-        $environment->addInlineParser(new EmojiParser());
+        $environment->addInlineParser(new EmojiParser($this->emojiDataProvider));
     }
 }
 

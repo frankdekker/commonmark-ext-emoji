@@ -2,8 +2,7 @@
 declare(strict_types=1);
 
 return [
-    '+1'                           => '👍',
-    '-1'                           => '👎',
+
     'airplane'                     => '✈️',
     'anchor'                       => '⚓',
     'angry'                        => '😠',
@@ -84,10 +83,8 @@ return [
     'mask'                         => '😷',
     'monkey_face'                  => '🐵',
     'mouse'                        => '🐭',
-    'n'                            => '👎',
     'negative_squared_cross_mark'  => '❎',
     'neutral_face'                 => '😐',
-    'no'                           => '👎',
     'no_mouth'                     => '😶',
     'open_mouth'                   => '😮',
     'part_alternation_mark'        => '〽️',
@@ -156,8 +153,6 @@ return [
     'wink'                         => '😉',
     'worried'                      => '😟',
     'x'                            => '❌',
-    'y'                            => '👍',
-    'yes'                          => '👍',
     'yum'                          => '😋',
     'zap'                          => '⚡',
 ];

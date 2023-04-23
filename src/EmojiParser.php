@@ -10,22 +10,25 @@ use League\CommonMark\Parser\InlineParserContext;
 
 class EmojiParser implements InlineParserInterface
 {
-    /**
-     * @param EmojiExtension::MODE_* $mode
-     */
-    public function __construct(private readonly string $mode = EmojiExtension::MODE_LIGHT)
+    public function __construct(private readonly EmojiDataProviderInterface $emojiDataProvider)
     {
     }
 
     public function getMatchDefinition(): InlineParserMatch
     {
-        return InlineParserMatch::string(':)');
+        return InlineParserMatch::oneOf(...$this->emojiDataProvider->getSupportedEmojis());
     }
 
     public function parse(InlineParserContext $inlineContext): bool
     {
+        $match = $inlineContext->getFullMatch();
+        $emoji = $this->emojiDataProvider->convert($match);
+        if ($emoji === null) {
+            return false;
+        }
+
         $inlineContext->getCursor()->advanceBy($inlineContext->getFullMatchLength());
-        $inlineContext->getContainer()->appendChild(new Text('😀'));
+        $inlineContext->getContainer()->appendChild(new Text($emoji));
 
         return true;
     }

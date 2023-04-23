@@ -2,8 +2,6 @@
 declare(strict_types=1);
 
 return [
-    '+1'                                   => '👍',
-    '-1'                                   => '👎',
     '100'                                  => '💯',
     '1234'                                 => '🔢',
     '1st_place_medal'                      => '🥇',
