@@ -21,4 +21,3 @@ class EmojiExtension implements ExtensionInterface
         $environment->addInlineParser(new EmojiParser($this->emojiDataProvider));
     }
 }
-
