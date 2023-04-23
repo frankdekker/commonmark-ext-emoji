@@ -35,9 +35,9 @@ class EmojiParserTest extends TestCase
 
     public function testGetMatchDefinition(): void
     {
-        $this->dataProvider->expects(self::once())->method('getSupportedEmojis')->willReturn(['foo', 'bar']);
+        $this->dataProvider->expects(self::once())->method('getSupportedEmojis')->willReturn('regex');
 
-        static::assertEquals(InlineParserMatch::oneOf('foo', 'bar'), $this->parser->getMatchDefinition());
+        static::assertEquals(InlineParserMatch::regex('regex'), $this->parser->getMatchDefinition());
     }
 
     /**
