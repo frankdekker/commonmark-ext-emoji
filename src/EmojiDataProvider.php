@@ -4,10 +4,14 @@ declare(strict_types=1);
 
 namespace FD\CommonMarkEmoji;
 
+use function array_keys;
+use function implode;
+use function preg_quote;
+
 class EmojiDataProvider implements EmojiDataProviderInterface
 {
-    /** @var string[]|null */
-    private ?array $supportedEmojis = null;
+    /** @var string|null */
+    private ?string $supportedEmojis = null;
 
     /** @var array<string, string>|null */
     private ?array $emojis = null;
@@ -29,7 +33,7 @@ class EmojiDataProvider implements EmojiDataProviderInterface
         return new EmojiDataProvider(__DIR__ . '/../resources/light.php', __DIR__ . '/../resources/shortcuts.php');
     }
 
-    public function getSupportedEmojis(): array
+    public function getSupportedEmojis(): string
     {
         if ($this->supportedEmojis !== null) {
             return $this->supportedEmojis;
@@ -38,13 +42,12 @@ class EmojiDataProvider implements EmojiDataProviderInterface
         $this->emojis    ??= require $this->emojiPath;
         $this->shortcuts ??= require $this->shortcutsPath;
 
-        /** @var string[] $keys */
-        $keys = array_keys($this->shortcuts);
-        foreach (array_keys($this->emojis) as $key) {
-            $keys[] = '(' . $key . ')';
+        $shortcuts = [];
+        foreach (array_keys($this->shortcuts) as $key) {
+            $shortcuts[] = preg_quote((string)$key, '/');
         }
 
-        return $this->supportedEmojis = $keys;
+        return $this->supportedEmojis = implode('|', $shortcuts) . '|\\(([\w-]+)\\)';
     }
 
     public function convert(string $key): ?string

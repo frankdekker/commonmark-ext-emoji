@@ -7,10 +7,9 @@ namespace FD\CommonMarkEmoji;
 interface EmojiDataProviderInterface
 {
     /**
-     * Return an array of supported emoji syntax's
-     * @return string[]
+     * Returns the regex for the supported emoji's
      */
-    public function getSupportedEmojis(): array;
+    public function getSupportedEmojis(): string;
 
     /**
      * Convert key to the native utf8 emoji

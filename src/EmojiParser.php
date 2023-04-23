@@ -17,7 +17,7 @@ class EmojiParser implements InlineParserInterface
 
     public function getMatchDefinition(): InlineParserMatch
     {
-        return InlineParserMatch::oneOf(...$this->emojiDataProvider->getSupportedEmojis());
+        return InlineParserMatch::regex($this->emojiDataProvider->getSupportedEmojis());
     }
 
     public function parse(InlineParserContext $inlineContext): bool

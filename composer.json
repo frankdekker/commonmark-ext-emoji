@@ -17,6 +17,7 @@
     },
     "autoload-dev": {
         "psr-4": {
+            "FD\\CommonMarkEmoji\\Tests\\Integration\\": "tests/Integration",
             "FD\\CommonMarkEmoji\\Tests\\Unit\\": "tests/Unit",
             "FD\\CommonMarkEmoji\\Tests\\": "tests/"
         }
