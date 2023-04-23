@@ -36,9 +36,14 @@ class EmojiParserTest extends TestCase
     {
         static::assertSame("<p>👍</p>\n", $this->converter->convert('(y)')->getContent());
         static::assertSame("<p>👍</p>\n", $this->converter->convert('(thumbsup)')->getContent());
+
         // support multiple emoji's
         static::assertSame("<p>👎👍</p>\n", $this->converter->convert('(n)(thumbsup)')->getContent());
         static::assertSame("<p>😃😃</p>\n", $this->converter->convert(':):)')->getContent());
+
+        // support for slack notation
+        static::assertSame("<p>👍</p>\n", $this->converter->convert(':thumbsup:')->getContent());
+
         // ignore emoji's inside code blocks
         static::assertSame("<pre><code>(y)\n</code></pre>\n", $this->converter->convert("```\n(y)\n```")->getContent());
     }
