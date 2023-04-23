@@ -55,6 +55,9 @@ class EmojiDataProvider implements EmojiDataProviderInterface
         // convert shortcut to key
         $key = $this->shortcuts[$key] ?? $key;
 
+        // remove any leading and trailing ()
+        $key = trim($key, '()');
+
         // convert key to emoji
         return $this->emojis[$key] ?? null;
     }
