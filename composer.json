@@ -1,5 +1,5 @@
 {
-    "name": "fd/commonmark-ext-emoji",
+    "name": "fdekker/commonmark-ext-emoji",
     "description": "An emoji extension for league/commonmark",
     "type": "library",
     "license": "MIT",

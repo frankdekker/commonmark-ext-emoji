@@ -7,7 +7,7 @@
 ## Installation
 Include the library as dependency in your own project via:
 ```php
-composer require "fd/commonmark-ext-emoji"
+composer require "fdekker/commonmark-ext-emoji"
 ```
 
 ## Usage:
