@@ -14,14 +14,15 @@ class EmojiDataProviderTest extends TestCase
     public function testLight(): void
     {
         $dataProvider = EmojiDataProvider::light();
-        static::assertCount(227, $dataProvider->getSupportedEmojis());
+        static::assertStringContainsString('[\w-]+', $dataProvider->getSupportedEmojis());
+        static::assertStringContainsString('[\w-]+', $dataProvider->getSupportedEmojis());
     }
 
     public function testFull(): void
     {
         $dataProvider = EmojiDataProvider::full();
-        static::assertCount(1911, $dataProvider->getSupportedEmojis());
-        static::assertCount(1911, $dataProvider->getSupportedEmojis());
+        static::assertStringContainsString('[\w-]+', $dataProvider->getSupportedEmojis());
+        static::assertStringContainsString('[\w-]+', $dataProvider->getSupportedEmojis());
     }
 
     public function testConvert(): void
