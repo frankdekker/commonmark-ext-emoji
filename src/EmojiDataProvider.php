@@ -55,6 +55,9 @@ class EmojiDataProvider implements EmojiDataProviderInterface
         $this->emojis    ??= require $this->emojiPath;
         $this->shortcuts ??= require $this->shortcutsPath;
 
+        // normalize key
+        $key = strtolower($key);
+
         // convert shortcut to key
         $key = $this->shortcuts[$key] ?? $key;
 
