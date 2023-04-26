@@ -23,6 +23,16 @@ class EmojiParser implements InlineParserInterface
     public function parse(InlineParserContext $inlineContext): bool
     {
         $match = $inlineContext->getFullMatch();
+        if ($match === '') {
+            return false;
+        }
+
+        // peek at the next following char, if it's an alphanum char and last char as well. skip replacement
+        $nextChar = $inlineContext->getCursor()->peek(strlen($match));
+        if ($nextChar !== null && preg_match('/^\w{2}$/', $nextChar . substr($match, -1)) === 1) {
+            return false;
+        }
+
         $emoji = $this->emojiDataProvider->convert($match);
         if ($emoji === null) {
             return false;
