@@ -43,6 +43,23 @@ class EmojiParserTest extends TestCase
     /**
      * @throws Exception
      */
+    public function testParseShouldSkipEmptyString(): void
+    {
+        $context = (new InlineParserContext(
+            $this->createMock(Cursor::class),
+            $this->createMock(AbstractBlock::class),
+            $this->createMock(ReferenceMapInterface::class)
+        ));
+        $context = $context->withMatches(['']);
+
+        $this->dataProvider->expects(self::never())->method('convert');
+
+        static::assertFalse($this->parser->parse($context));
+    }
+
+    /**
+     * @throws Exception
+     */
     public function testParseShouldSkipNonMatch(): void
     {
         $context = (new InlineParserContext(
@@ -53,6 +70,26 @@ class EmojiParserTest extends TestCase
         $context = $context->withMatches(['foobar']);
 
         $this->dataProvider->expects(self::once())->method('convert')->with('foobar')->willReturn(null);
+
+        static::assertFalse($this->parser->parse($context));
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testParseShouldSkipNextAlphaNumChars(): void
+    {
+        $cursor    = $this->createMock(Cursor::class);
+        $container = $this->createMock(AbstractBlock::class);
+
+        $context = (new InlineParserContext(
+            $cursor,
+            $container,
+            $this->createMock(ReferenceMapInterface::class)
+        ))->withMatches([':s']);
+
+        $cursor->expects(self::once())->method('peek')->willReturn('s');
+        $this->dataProvider->expects(self::never())->method('convert');
 
         static::assertFalse($this->parser->parse($context));
     }
