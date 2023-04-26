@@ -42,4 +42,4 @@ To read more about configuring extension visit: https://commonmark.thephpleague.
 
 ## Customization
 
-You can implement your `EmojiDataProviderInterface` to supply your own emoji's list.
+You can implement `EmojiDataProviderInterface` to supply your own emoji's list.
