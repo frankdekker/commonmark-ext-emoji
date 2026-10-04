@@ -19,18 +19,30 @@ class EmojiDataProvider implements EmojiDataProviderInterface
     /** @var array<string, string>|null */
     private ?array $shortcuts = null;
 
-    private function __construct(private readonly string $emojiPath, private readonly string $shortcutsPath)
-    {
+    /**
+     * @param list<string> $excludeShortcuts
+     */
+    private function __construct(
+        private readonly string $emojiPath,
+        private readonly string $shortcutsPath,
+        private readonly array $excludeShortcuts
+    ) {
     }
 
-    public static function full(): EmojiDataProvider
+    /**
+     * @param list<string> $excludeShortcuts
+     */
+    public static function full(array $excludeShortcuts = []): EmojiDataProvider
     {
-        return new EmojiDataProvider(__DIR__ . '/../resources/full.php', __DIR__ . '/../resources/shortcuts.php');
+        return new EmojiDataProvider(__DIR__ . '/../resources/full.php', __DIR__ . '/../resources/shortcuts.php', $excludeShortcuts);
     }
 
-    public static function light(): EmojiDataProvider
+    /**
+     * @param list<string> $excludeShortcuts
+     */
+    public static function light(array $excludeShortcuts = []): EmojiDataProvider
     {
-        return new EmojiDataProvider(__DIR__ . '/../resources/light.php', __DIR__ . '/../resources/shortcuts.php');
+        return new EmojiDataProvider(__DIR__ . '/../resources/light.php', __DIR__ . '/../resources/shortcuts.php', $excludeShortcuts);
     }
 
     public function getSupportedEmojis(): string
@@ -39,11 +51,10 @@ class EmojiDataProvider implements EmojiDataProviderInterface
             return $this->supportedEmojis;
         }
 
-        $this->emojis    ??= require $this->emojiPath;
-        $this->shortcuts ??= require $this->shortcutsPath;
+        $this->emojis ??= require $this->emojiPath;
 
         $shortcuts = [];
-        foreach (array_keys($this->shortcuts) as $key) {
+        foreach (array_keys($this->getShortcuts()) as $key) {
             $shortcuts[] = preg_quote((string)$key, '/');
         }
 
@@ -52,14 +63,14 @@ class EmojiDataProvider implements EmojiDataProviderInterface
 
     public function convert(string $key): ?string
     {
-        $this->emojis    ??= require $this->emojiPath;
-        $this->shortcuts ??= require $this->shortcutsPath;
+        $this->emojis ??= require $this->emojiPath;
+        $shortcuts    = $this->getShortcuts();
 
         // normalize key
         $key = strtolower($key);
 
         // convert shortcut to key
-        $key = $this->shortcuts[$key] ?? $key;
+        $key = $shortcuts[$key] ?? $key;
 
         // remove any leading and trailing ()
         if ((str_starts_with($key, '(') && str_ends_with($key, ')')) || (str_starts_with($key, ':') && str_ends_with($key, ':'))) {
@@ -68,5 +79,22 @@ class EmojiDataProvider implements EmojiDataProviderInterface
 
         // convert key to emoji
         return $this->emojis[$key] ?? null;
+    }
+
+    /**
+     * @return string[]
+     */
+    private function getShortcuts(): array
+    {
+        if ($this->shortcuts !== null) {
+            return $this->shortcuts;
+        }
+
+        $shortcuts = require $this->shortcutsPath;
+        foreach ($this->excludeShortcuts as $excludeShortcut) {
+            unset($shortcuts[$excludeShortcut]);
+        }
+
+        return $this->shortcuts = $shortcuts;
     }
 }

@@ -31,4 +31,11 @@ class EmojiDataProviderTest extends TestCase
         static::assertSame('👍', $dataProvider->convert('(y)'));
         static::assertSame('👍', $dataProvider->convert('(thumbsup)'));
     }
+
+    public function testConvertWithShortcutFilter(): void
+    {
+        $dataProvider = EmojiDataProvider::light(['(y)']);
+        static::assertNull($dataProvider->convert('(y)'));
+        static::assertSame('👍', $dataProvider->convert('(thumbsup)'));
+    }
 }
