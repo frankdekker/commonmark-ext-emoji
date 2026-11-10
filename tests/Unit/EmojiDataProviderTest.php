@@ -32,6 +32,19 @@ class EmojiDataProviderTest extends TestCase
         static::assertSame('👍', $dataProvider->convert('(thumbsup)'));
     }
 
+    public function testNamedEmojiMatchPrecedesShortcut(): void
+    {
+        foreach ([EmojiDataProvider::light(), EmojiDataProvider::full()] as $dataProvider) {
+            $pattern = '/' . $dataProvider->getSupportedEmojis() . '/i';
+            static::assertSame(1, preg_match($pattern, ':smile:', $matches));
+            static::assertSame([':smile:', '', 'smile'], $matches);
+            static::assertSame(1, preg_match($pattern, '(smile)', $matches));
+            static::assertSame(['(smile)', 'smile'], $matches);
+            static::assertSame(1, preg_match($pattern, ':s', $matches));
+            static::assertSame([':s'], $matches);
+        }
+    }
+
     public function testConvertWithShortcutFilter(): void
     {
         $dataProvider = EmojiDataProvider::light(['(y)']);

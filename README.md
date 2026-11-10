@@ -37,6 +37,8 @@ Outputs:
 Works 👍 👍 👍
 ```
 
+Complete names such as `:smile:` and `(smile)` take precedence over emoticon shortcuts such as `:s`.
+
 To read more about configuring extension visit: https://commonmark.thephpleague.com/2.4/extensions/github-flavored-markdown/
 
 
