@@ -58,7 +58,8 @@ class EmojiDataProvider implements EmojiDataProviderInterface
             $shortcuts[] = preg_quote((string)$key, '/');
         }
 
-        return $this->supportedEmojis = implode('|', $shortcuts) . '|\\(([\w-]+)\\)|:([\w-]+):';
+        // Match complete names before shortcuts which may share the same prefix.
+        return $this->supportedEmojis = '\\(([\w-]+)\\)|:([\w-]+):|' . implode('|', $shortcuts);
     }
 
     public function convert(string $key): ?string

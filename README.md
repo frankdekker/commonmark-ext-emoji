@@ -1,4 +1,4 @@
-[![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%208.1-8892BF)](https://php.net/)
+[![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%208.2-8892BF)](https://php.net/)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
 ![Run tests](https://github.com/frankdekker/commonmark-ext-emoji/workflows/Run%20checks/badge.svg)
 
@@ -36,6 +36,8 @@ Outputs:
 ```text
 Works 👍 👍 👍
 ```
+
+Complete names such as `:smile:` and `(smile)` take precedence over emoticon shortcuts such as `:s`.
 
 To read more about configuring extension visit: https://commonmark.thephpleague.com/2.4/extensions/github-flavored-markdown/
 
